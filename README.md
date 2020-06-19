@@ -65,7 +65,7 @@ int main() {
 **II. Подготовка к работе с сервисом openweathermap.org**<br/>
 1.Регистрируемся на сайте и получаем API key.<br/>
 07e1054f4a589840494cd54061b1f48d <br/>
-2.Составляем и тестируем запрос в браузере: "http://api.openweathermap.org/data/2.5/forecast?id=693805&units=metric&APPID=07e1054f4a589840494cd54061b1f48d". Параметр units=metric отвечает за отображение температуры в градусах цельсия.<br/>
+2.Составляем и тестируем запрос в браузере: "http://api.openweathermap.org/data/2.5/forecast?id=693805&units=metric&APPID=b0e23cb34e84309d025bc41912f9bb2e". Параметр units=metric отвечает за отображение температуры в градусах цельсия.<br/>
 В ответ получаем текст в формате JSON.<br/>
 ![](img/3.png)
 <p align="center">Рисунок 3.Полученный ответ</p><br/>
@@ -74,7 +74,7 @@ int main() {
 Модифицирем код клиента, чтобы отправить составленный запрос.<br/>
 ```cpp
     httplib::Client cli("api.openweathermap.org", 80);
-	auto result = cli.Get("/data/2.5/forecast?id=693805&units=metric&APPID=07e1054f4a589840494cd54061b1f48d");   // замени APPID=b3b3215efcb4017b119668066e83bc9e на APPID=свой API
+	auto result = cli.Get("/data/2.5/forecast?id=693805&units=metric&APPID=b0e23cb34e84309d025bc41912f9bb2e");   // замени APPID=b0e23cb34e84309d025bc41912f9bb2e на APPID=свой API
 	res.set_content(HtmlCode, "text/html");
 ```
 
@@ -135,7 +135,7 @@ void replace(std::string& str, const std::string from, std::string  to, int key)
 void gen_response(const httplib::Request& req, httplib::Response& res)
 {
 	httplib::Client cli("api.openweathermap.org", 80);
-	auto result = cli.Get("/data/2.5/forecast?id=693805&units=metric&APPID=07e1054f4a589840494cd54061b1f48d");   // замени APPID=b3b3215efcb4017b119668066e83bc9e на APPID=свой API
+	auto result = cli.Get("/data/2.5/forecast?id=693805&units=metric&APPID=b0e23cb34e84309d025bc41912f9bb2e");   // замени APPID=b3b3215efcb4017b119668066e83bc9e на APPID=свой API
 	json j;
 	if (result && result->status == 200) j = json::parse(result->body);
 	std::string HtmlCode;
